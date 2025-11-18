@@ -144,8 +144,8 @@ The system implements three types of anomaly detection algorithms:
 ## Example Outputs
 
 ### Flight Statistics and Anomaly Detection Dashboard
-![Flight Statistics](<img width="1806" height="682" alt="image" src="https://github.com/user-attachments/assets/cfb555dc-9e65-44a7-ad9e-1ecab21d1399" />
-)
+![Flight Statistics](<img width="1808" height="656" alt="flight-statistics" src="https://github.com/user-attachments/assets/db54ea23-0251-44ba-aa85-2b333af85f00" />)
+
 
 ### Battery Voltage Graph
 ![Voltage Graph](<img width="1747" height="507" alt="image" src="https://github.com/user-attachments/assets/836eaddd-c742-4065-a47f-60963a39493a" />
