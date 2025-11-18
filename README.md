@@ -21,7 +21,7 @@ A comprehensive drone flight data analysis tool that parses ArduPilot .BIN telem
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone [<repository-url>](https://github.com/ib105/drone-log-analyzer/)
 cd drone-analyzer
 ```
 
@@ -143,29 +143,21 @@ The system implements three types of anomaly detection algorithms:
 
 ## Example Outputs
 
-### Flight Statistics Dashboard
-![Flight Statistics](examples/flight_stats.png)
-*Shows flight duration, average voltage, and average vibration metrics*
-
-### Anomaly Detection Results
-![Anomaly Detection](examples/anomalies.png)
-*Displays detected voltage sags, vibration spikes, and motor imbalances*
+### Flight Statistics and Anomaly Detection Dashboard
+![Flight Statistics](<img width="1806" height="682" alt="image" src="https://github.com/user-attachments/assets/cfb555dc-9e65-44a7-ad9e-1ecab21d1399" />
+)
 
 ### Battery Voltage Graph
-![Voltage Graph](examples/voltage_graph.png)
-*Interactive time-series visualization of battery voltage throughout the flight*
+![Voltage Graph](<img width="1747" height="507" alt="image" src="https://github.com/user-attachments/assets/836eaddd-c742-4065-a47f-60963a39493a" />
+)
 
 ### Vibration Analysis Graph
-![Vibration Graph](examples/vibration_graph.png)
-*Shows vibration levels over time with spike detection*
+![Vibration Graph](<img width="1742" height="506" alt="image" src="https://github.com/user-attachments/assets/7b98ffb0-a4f5-4aa9-95dc-9944305c5ff4" />
+)
 
-### Motor Output Comparison
-![Motor Outputs](examples/motor_outputs.png)
-*Compares PWM signals for all four motors to identify imbalances*
-
-### AI-Generated Analysis Report
-![AI Analysis](examples/ai_analysis.png)
-*Comprehensive technical assessment with risk ratings and maintenance recommendations*
+### GPT5 Analysis Report
+![AI Analysis](<img width="922" height="820" alt="image" src="https://github.com/user-attachments/assets/d35d3627-e800-47ed-930f-54aefc406ec2" />
+)
 
 ## How the GPT-5 Integration Works
 
@@ -237,13 +229,6 @@ drone-analyzer/
 ├── anomaly_detection.py    # Anomaly detection algorithms
 ├── requirements.txt        # Python dependencies
 ├── README.md              # This file
-└── examples/              # Example output screenshots
-    ├── flight_stats.png
-    ├── anomalies.png
-    ├── voltage_graph.png
-    ├── vibration_graph.png
-    ├── motor_outputs.png
-    └── ai_analysis.png
 ```
 
 ## Technical Specifications
@@ -253,40 +238,3 @@ drone-analyzer/
 - **Visualization**: Plotly interactive graphs
 - **Frontend**: Streamlit web application
 - **Parsing Library**: pymavlink 2.4.49+
-
-## Troubleshooting
-
-### Common Issues
-
-1. **"Error getting AI insights"**:
-   - Verify your OpenAI API key is correct
-   - Check your internet connection
-   - Ensure you have API credits available
-
-2. **"No module named 'pymavlink'"**:
-   - Run `pip install -r requirements.txt`
-
-3. **Empty graphs or no data**:
-   - Verify the .BIN file is a valid ArduPilot log
-   - Check that the file contains the expected message types (BAT, VIBE, RCOU)
-
-## Future Enhancements
-
-- Support for additional log formats (ULog, TLOG)
-- GPS track visualization
-- Historical flight comparison
-- Automated email reports
-- Real-time flight monitoring
-- Custom anomaly threshold configuration
-
-## License
-
-[Add your license here]
-
-## Contributing
-
-[Add contribution guidelines here]
-
-## Contact
-
-[Add contact information here]
