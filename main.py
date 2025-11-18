@@ -13,24 +13,36 @@ def get_openai_insights(data, anomaly_results):
     """Get AI insights from OpenAI GPT-5"""
     summary = {
         "flight_duration_sec": int(data['timestamps'][-1] - data['timestamps'][0]) if data['timestamps'] else 0,
-        "voltage_sag_events": anomaly_results['voltage_sag']['count'],
-        "vibration_spikes": anomaly_results['vibration_spikes']['count'],
-        "motor_imbalance": anomaly_results['motor_imbalance']['message'],
         "battery_stats": {
             "min_voltage": round(min(data['battery_voltage']), 2) if data['battery_voltage'] else None,
             "max_voltage": round(max(data['battery_voltage']), 2) if data['battery_voltage'] else None,
             "avg_voltage": round(np.mean(data['battery_voltage']), 2) if data['battery_voltage'] else None,
+            "avg_current": round(np.mean(data['battery_current']), 2) if data['battery_current'] else None,
         },
         "vibration_stats": {
             "max_vibration": round(max(data['vibration']), 2) if data['vibration'] else None,
             "avg_vibration": round(np.mean(data['vibration']), 2) if data['vibration'] else None,
         },
+        "gps_stats": {
+            "avg_hdop": round(np.mean(data['gps_hdop']), 2) if data['gps_hdop'] else None,
+            "max_hdop": round(max(data['gps_hdop']), 2) if data['gps_hdop'] else None,
+        },
         "motor_stats": {
             "motors_analyzed": len([m for m in data['motor_outputs'] if m]),
+        },
+        "altitude_stats": {
+            "max_altitude": round(max(data['altitude']), 2) if data['altitude'] else None,
+        },
+        "anomalies": {
+            "voltage_sag_events": anomaly_results['voltage_sag']['count'],
+            "min_voltage_during_sag": anomaly_results['voltage_sag']['min_voltage'],
+            "vibration_spikes": anomaly_results['vibration_spikes']['count'],
+            "max_vibration_spike": anomaly_results['vibration_spikes']['max_vibration'],
+            "motor_imbalance": anomaly_results['motor_imbalance']['message'],
         }
     }
     
-    system_prompt = """You are an expert aerospace engineer specializing in drone flight analysis and telemetry interpretation. 
+    system_prompt = """You are an expert in drone flight analysis and telemetry interpretation. 
 Your role is to analyze flight data and provide definitive technical assessments without asking follow-up questions.
 Provide clear, actionable insights based solely on the data provided."""
     
@@ -88,7 +100,7 @@ def create_graph(x, y, title, ylabel, color):
 def generate_report(data, anomaly_results, insights, filename):
     """Generate text report"""
     lines = [
-        "DRONE FLIGHT ANALYSIS REPORT",
+        "DRONE LOG ANALYSIS REPORT",
         f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
         f"File: {filename}\n",
         "STATISTICS:",
@@ -105,7 +117,7 @@ def generate_report(data, anomaly_results, insights, filename):
     return "\n".join([l for l in lines if l])
 
 st.set_page_config(page_title="Drone Analyzer", layout="wide")
-st.title("Drone Flight Analyzer")
+st.title("Drone Log Analyzer")
 
 uploaded_file = st.file_uploader("Upload .BIN file", type=['bin', 'BIN'])
 
@@ -140,11 +152,11 @@ if uploaded_file and st.button("Analyze", type="primary"):
         # Graphs
         st.subheader("Flight Data Visualization")
         if data['battery_voltage'] and data['timestamps']:
-            st.plotly_chart(create_graph(data['timestamps'], data['battery_voltage'], 'Battery Voltage', 'Voltage (V)', '#00cc96'), width='stretch')
+            st.plotly_chart(create_graph(data['timestamps'], data['battery_voltage'], 'Battery Voltage', 'Voltage (V)', '#00cc96'), use_container_width=True)
         
         if data['vibration']:
             times = np.linspace(data['timestamps'][0], data['timestamps'][-1], len(data['vibration'])) if data['timestamps'] else list(range(len(data['vibration'])))
-            st.plotly_chart(create_graph(times, data['vibration'], 'Vibration', 'Vibration (m/s²)', '#ff6692'), width='stretch')
+            st.plotly_chart(create_graph(times, data['vibration'], 'Vibration', 'Vibration (m/s²)', '#ff6692'), use_container_width=True)
         
         # Motor outputs
         if any(data['motor_outputs']):
@@ -155,7 +167,7 @@ if uploaded_file and st.button("Analyze", type="primary"):
                     times = np.linspace(data['timestamps'][0], data['timestamps'][-1], len(motor)) if data['timestamps'] else list(range(len(motor)))
                     fig.add_trace(go.Scatter(x=times, y=motor, mode='lines', name=f'Motor {i+1}', line=dict(color=colors[i])))
             fig.update_layout(title='Motor Outputs', xaxis_title='Time (s)', yaxis_title='PWM', template='plotly_dark')
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
         
         # AI Insights
         st.subheader("GPT5 Insights")
