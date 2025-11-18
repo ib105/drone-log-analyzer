@@ -143,14 +143,12 @@ The system implements three types of anomaly detection algorithms:
 
 ## Example Outputs
 
-### Flight Statistics and Anomaly Detection Dashboard
 ![](https://github.com/user-attachments/assets/db54ea23-0251-44ba-aa85-2b333af85f00)
 
 
-### Visualizations
 ![](https://github.com/user-attachments/assets/d5fc59aa-a7d3-4644-b7d3-1fbeafefee05)
 
-### GPT5 Analysis Report
+
 ![](https://github.com/user-attachments/assets/d35d3627-e800-47ed-930f-54aefc406ec2)
 
 ## How the GPT-5 Integration Works
