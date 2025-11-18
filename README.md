@@ -4,7 +4,7 @@ A comprehensive drone flight data analysis tool that parses ArduPilot .BIN telem
 
 ## Features
 
-- Parse ArduPilot .BIN telemetry files
+- Parse ArduPilot .BIN telemetry file
 - Real-time anomaly detection (voltage sags, vibration spikes, motor imbalances)
 - Interactive data visualization with Plotly
 - AI-powered flight analysis using GPT-5
