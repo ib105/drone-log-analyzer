@@ -147,17 +147,11 @@ The system implements three types of anomaly detection algorithms:
 ![Flight Statistics](https://github.com/user-attachments/assets/db54ea23-0251-44ba-aa85-2b333af85f00)
 
 
-### Battery Voltage Graph
-![Voltage Graph](<img width="1747" height="507" alt="image" src="https://github.com/user-attachments/assets/836eaddd-c742-4065-a47f-60963a39493a" />
-)
-
-### Vibration Analysis Graph
-![Vibration Graph](<img width="1742" height="506" alt="image" src="https://github.com/user-attachments/assets/7b98ffb0-a4f5-4aa9-95dc-9944305c5ff4" />
-)
+### Visualizations
+![Visualizations](https://github.com/user-attachments/assets/d5fc59aa-a7d3-4644-b7d3-1fbeafefee05)
 
 ### GPT5 Analysis Report
-![AI Analysis](<img width="922" height="820" alt="image" src="https://github.com/user-attachments/assets/d35d3627-e800-47ed-930f-54aefc406ec2" />
-)
+![AI Analysis](https://github.com/user-attachments/assets/d35d3627-e800-47ed-930f-54aefc406ec2)
 
 ## How the GPT-5 Integration Works
 
