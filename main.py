@@ -152,11 +152,11 @@ if uploaded_file and st.button("Analyze", type="primary"):
         # Graphs
         st.subheader("Flight Data Visualization")
         if data['battery_voltage'] and data['timestamps']:
-            st.plotly_chart(create_graph(data['timestamps'], data['battery_voltage'], 'Battery Voltage', 'Voltage (V)', '#00cc96'), use_container_width=True)
+            st.plotly_chart(create_graph(data['timestamps'], data['battery_voltage'], 'Battery Voltage', 'Voltage (V)', '#00cc96'), width='stretch')
         
         if data['vibration']:
             times = np.linspace(data['timestamps'][0], data['timestamps'][-1], len(data['vibration'])) if data['timestamps'] else list(range(len(data['vibration'])))
-            st.plotly_chart(create_graph(times, data['vibration'], 'Vibration', 'Vibration (m/s²)', '#ff6692'), use_container_width=True)
+            st.plotly_chart(create_graph(times, data['vibration'], 'Vibration', 'Vibration (m/s²)', '#ff6692'), width='stretch')
         
         # Motor outputs
         if any(data['motor_outputs']):
@@ -167,7 +167,7 @@ if uploaded_file and st.button("Analyze", type="primary"):
                     times = np.linspace(data['timestamps'][0], data['timestamps'][-1], len(motor)) if data['timestamps'] else list(range(len(motor)))
                     fig.add_trace(go.Scatter(x=times, y=motor, mode='lines', name=f'Motor {i+1}', line=dict(color=colors[i])))
             fig.update_layout(title='Motor Outputs', xaxis_title='Time (s)', yaxis_title='PWM', template='plotly_dark')
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
         
         # AI Insights
         st.subheader("GPT5 Insights")
